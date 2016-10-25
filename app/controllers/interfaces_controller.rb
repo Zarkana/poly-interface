@@ -1,4 +1,8 @@
 class InterfacesController < ApplicationController
+  def index
+    @interfaces = Interface.all
+  end
+
   def show
     @interface = Interface.find(params[:id])
   end

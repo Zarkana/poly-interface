@@ -2,3 +2,34 @@
   <strong>Title:</strong>
   <%= @interface.name %>
 </p>
+
+<h2>Sections</h2>
+<% @interface.sections.each do |section| %>
+  <p>
+    <strong>Section:</strong>
+    <%= section.name %>
+  </p>
+
+  <p>
+    <strong>Count:</strong>
+    <%= section.plot_count %>
+  </p>
+<% end %>
+
+<h2>Add a section:</h2>
+<%= form_for([@interface, @interface.sections.build]) do |f| %>
+ <p>
+   <%= f.label :name %><br>
+   <%= f.text_field :name %>
+ </p>
+ <p>
+   <%= f.label :plot_count %><br>
+   <%= f.text_field :plot_count %>
+ </p>
+ <p>
+   <%= f.submit %>
+ </p>
+<% end %>
+
+<%= link_to 'Edit', edit_interface_path(@interface) %> |
+<%= link_to 'Back', interfaces_path %>

@@ -1,0 +1,16 @@
+<h1>Listing interfaces</h1>
+
+<%= link_to 'New interface', new_interface_path %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+  <% @interfaces.each do |interface| %>
+    <tr>
+      <td><%= interface.name %></td>
+      <td><%= link_to 'Show', interface_path(interface) %></td>
+    </tr>
+  <% end %>
+</table>

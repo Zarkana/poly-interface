@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161022191727) do
+ActiveRecord::Schema.define(version: 20161025061210) do
 
   create_table "interfaces", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "plot_count"
+    t.integer  "interface_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["interface_id"], name: "index_sections_on_interface_id"
   end
 
 end

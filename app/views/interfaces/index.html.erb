@@ -11,6 +11,10 @@
     <tr>
       <td><%= interface.name %></td>
       <td><%= link_to 'Show', interface_path(interface) %></td>
+      <td><%= link_to 'Edit', edit_interface_path(interface) %></td>
+      <td><%= link_to 'Destroy', interface_path(interface),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 </table>

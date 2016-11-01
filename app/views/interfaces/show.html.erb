@@ -1,16 +1,22 @@
-<p>
+<p class="interface">
   <strong>Title:</strong>
   <%= @interface.name %>
 </p>
 
 <h2>Sections</h2>
 <% @interface.sections.each do |section| %>
-  <p>
-    <strong>Section:</strong>
+    <strong>
+      Section:
+      <%= link_to 'Destroy', interface_section_path(@interface, section),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></br>
+
+    </strong>
+    <p class="section">
     <%= section.name %>
   </p>
 
-  <p>
+  <p class="section">
     <strong>Count:</strong>
     <%= section.plot_count %>
   </p>
@@ -18,11 +24,11 @@
 
 <h2>Add a section:</h2>
 <%= form_for([@interface, @interface.sections.build]) do |f| %>
- <p>
+ <p class="section">
    <%= f.label :name %><br>
    <%= f.text_field :name %>
  </p>
- <p>
+ <p class="section">
    <%= f.label :plot_count %><br>
    <%= f.text_field :plot_count %>
  </p>

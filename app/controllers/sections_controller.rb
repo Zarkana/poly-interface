@@ -5,6 +5,14 @@ class SectionsController < ApplicationController
     redirect_to interface_path(@interface)
   end
 
+  def destroy
+    @interface = Interface.find(params[:interface_id])
+    @section = @interface.sections.find(params[:id])
+    @section.destroy
+
+    redirect_to :back
+  end
+
   private
     def section_params
       params.require(:section).permit(:name, :plot_count)

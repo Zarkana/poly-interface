@@ -13,12 +13,13 @@
 
     </strong>
     <p class="section">
-    <%= section.name %>
+    <%= best_in_place section, :name, :url => sectionupdate_path(interface_id: @interface.id, id: section.id ) %>
   </p>
 
   <p class="section">
     <strong>Count:</strong>
-    <%= section.plot_count %>
+
+    <%= best_in_place section, :plot_count, :url => sectionupdate_path(interface_id: @interface.id, id: section.id ) %>
   </p>
 <% end %>
 

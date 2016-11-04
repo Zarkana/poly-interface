@@ -8,6 +8,7 @@ class InterfacesController < ApplicationController
   end
 
   def new
+     @interface = Interface.new
   end
 
   def edit

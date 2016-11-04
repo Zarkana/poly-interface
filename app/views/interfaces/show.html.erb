@@ -1,3 +1,4 @@
+<h1>Interface</h1>
 <p class="interface">
   <strong>Title:</strong>
   <%= @interface.name %>
@@ -7,20 +8,53 @@
 <% @interface.sections.each do |section| %>
     <strong>
       Section:
-      <%= link_to 'Destroy', interface_section_path(@interface, section),
+      <%= link_to 'Destroy', section_path(@interface, section),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></br>
 
     </strong>
     <p class="section">
-    <%= best_in_place section, :name, :url => sectionupdate_path(interface_id: @interface.id, id: section.id ) %>
-  </p>
+      <%= best_in_place section, :name, :url => sectionupdate_path(interface_id: @interface.id, id: section.id ) %>
+    </p>
 
-  <p class="section">
-    <strong>Count:</strong>
+    <p class="section">
+      <strong>Count:</strong>
 
-    <%= best_in_place section, :plot_count, :url => sectionupdate_path(interface_id: @interface.id, id: section.id ) %>
-  </p>
+      <%= best_in_place section, :plot_count, :url => sectionupdate_path(interface_id: @interface.id, id: section.id ) %>
+    </p>
+  <!--
+    Display Items
+  -->
+  <h3>Items</h3>
+  <% section.items.each do |item| %>
+  <strong>
+    Item:
+    <%= link_to 'Destroy', item_path(interface_id: @interface.id, section_id: section.id, id: item.id),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %></br>
+
+  </strong>
+    <p class="item">
+      <strong>Item Name:</strong>
+      <%= best_in_place item, :name, :url => itemupdate_path(interface_id: @interface.id, section_id: section.id, id: item.id) %>
+    </p>
+  <% end %>
+  </br>
+  <!--
+    Add a Item
+  -->
+  <h3>Add an item:</h3>
+  <%= form_for([section, section.items.build]) do |f| %>
+   <p class="item">
+     <%= f.label :name %><br>
+     <%= f.text_field :name %>
+   </p>
+   <%= f.hidden_field :section_id, :value => section.id %>
+   <%= f.hidden_field :interface_id, :value => @interface.id %>
+   <p>
+     <%= f.submit %>
+   </p>
+  <% end %>
 <% end %>
 
 <h2>Add a section:</h2>
